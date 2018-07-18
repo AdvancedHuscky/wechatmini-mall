@@ -1,0 +1,12 @@
+/**app.wxss**/
+page{
+  background: #f9f9f9;
+}
+.bg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 144rpx;
+  width: 100%;
+  z-index: -1;
+}
