@@ -1,3 +1,5 @@
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+
 Page({
 
   /**
@@ -41,7 +43,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getProductList();
+  },
+  getProductList(){
+    wx.showLoading({
+      title: '商品数据加载中……',
+    })
+    qcloud.request({
+      url: 'https://hi7tf7jb.qcloud.la/weapp/product',
+      success: result => {
+        wx.hideLoading()
+        this.setData({
+          productList: result.data.data
+        })
+      },
+      fail: result => {
+        wx.hideLoading()
+        console.log('error!')
+      }
+    })
   },
 
   /**

@@ -12,7 +12,7 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-SET @IMAGE_BASE_URL = "YOUR_OWN_IMAGE_BASE_URL"; -- FOR EXAMPLE: https://*****.ap-shanghai.myqcloud.com/
+SET @IMAGE_BASE_URL = "/images/products/"; -- FOR EXAMPLE: https://*****.ap-shanghai.myqcloud.com/
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ SET @IMAGE_BASE_URL = "YOUR_OWN_IMAGE_BASE_URL"; -- FOR EXAMPLE: https://*****.a
 --
 -- 表的结构 `comment`
 --
-
+DROP TABLE IF EXISTS comment;
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `user` varchar(255) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `comment` (
 --
 -- 表的结构 `order_product`
 --
-
+DROP TABLE IF EXISTS order_product;
 CREATE TABLE `order_product` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -58,6 +58,7 @@ CREATE TABLE `order_product` (
 -- 表的结构 `order_user`
 --
 
+DROP TABLE IF EXISTS order_user;
 CREATE TABLE `order_user` (
   `id` int(11) NOT NULL,
   `user` varchar(255) NOT NULL,
@@ -70,6 +71,7 @@ CREATE TABLE `order_user` (
 -- 表的结构 `product`
 --
 
+DROP TABLE IF EXISTS product;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL COMMENT 'id',
   `image` varchar(255) NOT NULL COMMENT '图片',
@@ -81,6 +83,7 @@ CREATE TABLE `product` (
 --
 -- 转存表中的数据 `product`
 --
+
 
 INSERT INTO `product` (`id`, `image`, `name`, `price`, `source`) VALUES
 (1, CONCAT(@IMAGE_BASE_URL, 'product1.jpg'), '钱包', '132.00', '国内·广东'),
@@ -104,7 +107,7 @@ INSERT INTO `product` (`id`, `image`, `name`, `price`, `source`) VALUES
 --
 -- 表的结构 `trolley_user`
 --
-
+DROP TABLE IF EXISTS trolley_user;
 CREATE TABLE `trolley_user` (
   `id` int(11) NOT NULL,
   `user` varchar(255) NOT NULL,
