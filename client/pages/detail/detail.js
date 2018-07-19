@@ -5,7 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    product: {
+      id: 2,
+      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product2.jpg',
+      name: '商品2',
+      price: 200,
+      source: '国内·广东',
+    }
   },
 
   /**
