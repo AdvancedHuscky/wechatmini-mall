@@ -1,4 +1,6 @@
 // pages/detail/detail.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+const config = require('../../config.js')
 Page({
 
   /**
@@ -13,12 +15,40 @@ Page({
       source: '国内·广东',
     }
   },
-
+  getProduct(id){
+    wx.showLoading({
+      title: '商品数据加载中……',
+    })
+    qcloud.request({
+      url:config.service.productDetail + id,//对特定的商品获取数据
+      success:result=>{
+        wx.hideLoading()
+        let data = result.data
+        //返回数据的code为0的时候
+        if(!data.code){
+          this.setData({
+            product:data.data
+          })
+        }else{
+          //过了2秒没有执行函数，则返回上一页
+          setTimeout(()=>{
+            wx.navigateBack()
+          },2000)
+        }
+      },
+      fail:()=>{
+        wx.hideLoading()
+        setTimeout(()=>{
+          wx.navigateBack()
+        },2000)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getProduct(options.id)
   },
 
   /**
