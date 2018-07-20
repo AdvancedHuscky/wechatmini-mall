@@ -31,7 +31,8 @@ router.post('/tunnel', controllers.tunnel.post)
 router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
-// GET 向腾讯云服务器请求获取数据
+// GET 向腾讯云服务器请求获取首页商品列表数据
 router.get('/product',controllers.product.list)
-
+//GET 获取商品详情数据
+router.get('/product/:id',controllers.product.detail)
 module.exports = router
